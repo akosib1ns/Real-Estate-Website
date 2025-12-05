@@ -7,4 +7,3 @@
 
   Run `npm run dev` to start the development server.
   
-  Run `ngrok http 3000` to start the server
