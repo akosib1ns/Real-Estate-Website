@@ -135,9 +135,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
             </div>
 
             <div className="mt-6 space-y-2 text-white text-sm">
-              <p>• Recently closed premium listings</p>
-              <p>• High-value properties represented</p>
-              <p>• Featured investment & rental units</p>
+          
             </div>
           </div>
         </div>
