@@ -6,7 +6,16 @@ import { Navigation } from "./components/Navigation";
 import { AgentProfile } from "./components/AgentProfile";
 import { ContactAgent } from "./components/ContactAgent";
 
-const image_46e41bc5770eaf655c675849b85c172372b8f29c = "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaXZpbmclMjByb29tfGVufDB8fHx8fDE3MzI4OTI4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080";
+const image_46e41bc5770eaf655c675849b85c172372b8f29c =
+  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaXZpbmclMjByb29tfGVufDB8fHx8fDE3MzI4OTI4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080";
+
+/// ✅ LOCAL AGENT IMAGES  (exact names from your screenshot)
+import ennahMoralesImg from "./assets/agents/Ennah Morales.jpg";
+import alfieJohnLagadiaImg from "./assets/agents/Alfie John Lagadia.jpg";
+import alyssaImg from "./assets/agents/Ms. Alyssa.png";
+import jacksonLimImg from "./assets/agents/Jackson Lim Jr.png";
+import joshuaTanatoImg from "./assets/agents/Joshua Tanato.png";
+import adtRealEstateImg from "./assets/agents/ADT Real Estate.png";
 
 export type PropertyType = "buy" | "rent";
 
@@ -25,6 +34,8 @@ export interface Property {
   description: string;
   ownerName: string;
   ownerContact: string;
+  // ✅ photo used in AgentProfile
+  agentPhoto?: string;
 }
 
 export const mockProperties: Property[] = [
@@ -32,8 +43,7 @@ export const mockProperties: Property[] = [
     id: "1",
     title: "Ballesteros Townhomes",
     price: 24000000,
-    location:
-      "732 Ballesteros Street, New Zaniga, Mandaluyong City",
+    location: "732 Ballesteros Street, New Zaniga, Mandaluyong City",
     Region: "Metro Manila",
     City: "Mandaluyong",
     bedrooms: 4,
@@ -44,6 +54,7 @@ export const mockProperties: Property[] = [
     description: "Spacious and Affordable Urban Living",
     ownerName: "Ennah Morales",
     ownerContact: "",
+    agentPhoto: ennahMoralesImg,          // ✅ uses Ennah Morales.jpg
   },
   {
     id: "2",
@@ -62,6 +73,7 @@ export const mockProperties: Property[] = [
       "3BR Semi-furnished Townhouse for Sale at San Juan City Near. Xavier School",
     ownerName: "Jackson Lim",
     ownerContact: "+639173007178",
+    agentPhoto: jacksonLimImg,            // ✅ uses Jackson Lim Jr.png
   },
   {
     id: "3",
@@ -80,6 +92,7 @@ export const mockProperties: Property[] = [
       "Four Bedrooms Townhouse for Sale in Mandaluyong 3Storey-MD",
     ownerName: "Ms. Alyssa",
     ownerContact: "+639173056877",
+    agentPhoto: alyssaImg,                // ✅ uses Ms. Alyssa.png
   },
   {
     id: "4",
@@ -98,6 +111,7 @@ export const mockProperties: Property[] = [
       "Designer residence in Neopolitan Fairview QC where sophisticated design meets modern luxury",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
+    agentPhoto: joshuaTanatoImg,          // ✅ uses Joshua Tanato.png
   },
   {
     id: "5",
@@ -117,6 +131,7 @@ export const mockProperties: Property[] = [
       "Brand New 2 -S torey 4 Bedrooms House and Lot with Swimming Po ol for Sale in Filinvest Heights Quezon City",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
+    agentPhoto: joshuaTanatoImg,          // ✅ same agent photo reused
   },
   {
     id: "6",
@@ -135,6 +150,7 @@ export const mockProperties: Property[] = [
       "FOR RENT:3 BEDROOMHOUSE AND LOT NEAR UP TOWN CENTER",
     ownerName: "The Potter's Hand Realty & Management Corp.",
     ownerContact: "",
+    // no image for this one yet
   },
   {
     id: "7",
@@ -154,6 +170,7 @@ export const mockProperties: Property[] = [
       "FOR SALE BEAUTIFUL MODERN DESIGN 2 STOREY CORNER HOUSE AND LOT IN GREENWOODS EXECUTIVE VILLAGE",
     ownerName: "Alfie John Lagadia",
     ownerContact: "+639452678532",
+    agentPhoto: alfieJohnLagadiaImg,      // ✅ uses Alfie John Lagadia.jpg
   },
   {
     id: "8",
@@ -172,6 +189,7 @@ export const mockProperties: Property[] = [
     description: "Modern studio unit with amenities",
     ownerName: "ADT REALTY",
     ownerContact: "+639173151528",
+    agentPhoto: adtRealEstateImg,         // ✅ uses ADT Real Estate.png
   },
   {
     id: "9",
@@ -247,11 +265,7 @@ export const mockProperties: Property[] = [
 
 export default function App() {
   const [currentView, setCurrentView] = useState<
-    | "home"
-    | "browse"
-    | "rent"
-    | "agent-profile"
-    | "contact-agent"
+    "home" | "browse" | "rent" | "agent-profile" | "contact-agent"
   >("home");
   const [selectedProperty, setSelectedProperty] =
     useState<Property | null>(null);
@@ -274,30 +288,30 @@ export default function App() {
       {currentView === "home" && (
         <Homepage onNavigate={setCurrentView} />
       )}
+
       {currentView === "browse" && (
         <BrowseProperties
-          properties={mockProperties.filter(
-            (p) => p.type === "buy",
-          )}
+          properties={mockProperties.filter((p) => p.type === "buy")}
           onNavigateToAgent={handleNavigateToAgent}
           onBack={() => setCurrentView("home")}
         />
       )}
+
       {currentView === "rent" && (
         <RentProperties
-          properties={mockProperties.filter(
-            (p) => p.type === "rent",
-          )}
+          properties={mockProperties.filter((p) => p.type === "rent")}
           onNavigateToAgent={handleNavigateToAgent}
           onBack={() => setCurrentView("home")}
         />
       )}
+
       {currentView === "agent-profile" && selectedProperty && (
         <AgentProfile
           property={selectedProperty}
           onBack={() => setCurrentView("home")}
         />
       )}
+
       {currentView === "contact-agent" && selectedProperty && (
         <ContactAgent
           property={selectedProperty}
