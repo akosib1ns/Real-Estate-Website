@@ -38,6 +38,9 @@ export interface Property {
   agentPhoto?: string;
 }
 
+// 👇 define a View type so history & currentView stay in sync
+type View = "home" | "browse" | "rent" | "agent-profile" | "contact-agent";
+
 export const mockProperties: Property[] = [
   {
     id: "1",
@@ -54,7 +57,7 @@ export const mockProperties: Property[] = [
     description: "Spacious and Affordable Urban Living",
     ownerName: "Ennah Morales",
     ownerContact: "",
-    agentPhoto: ennahMoralesImg,          // ✅ uses Ennah Morales.jpg
+    agentPhoto: ennahMoralesImg, // ✅ uses Ennah Morales.jpg
   },
   {
     id: "2",
@@ -73,7 +76,7 @@ export const mockProperties: Property[] = [
       "3BR Semi-furnished Townhouse for Sale at San Juan City Near. Xavier School",
     ownerName: "Jackson Lim",
     ownerContact: "+639173007178",
-    agentPhoto: jacksonLimImg,            // ✅ uses Jackson Lim Jr.png
+    agentPhoto: jacksonLimImg, // ✅ uses Jackson Lim Jr.png
   },
   {
     id: "3",
@@ -88,11 +91,10 @@ export const mockProperties: Property[] = [
     type: "buy",
     image:
       "https://img.lamudi.com/eyJidWNrZXQiOiJwcmQtbGlmdWxsY29ubmVjdC1iYWNrZW5kLWIyYi1pbWFnZXMiLCJrZXkiOiJwcm9wZXJ0aWVzLzAxOTk4NDEzLTY2YWMtNzIzZi04Y2IyLTIwOGMwZmUzZjhlYi8wMTk5ODQxNC1hMWJlLTczNTgtOWIxOC04ZWJlMTcyZTA5YjAuanBnIiwiYnJhbmQiOiJsYW11ZGkiLCJlZGl0cyI6eyJyb3RhdGUiOm51bGwsInJlc2l6ZSI6eyJ3aWR0aCI6OTAwLCJoZWlnaHQiOjY1MCwiZml0IjoiY292ZXIifX19",
-    description:
-      "Four Bedrooms Townhouse for Sale in Mandaluyong 3Storey-MD",
+    description: "Four Bedrooms Townhouse for Sale in Mandaluyong 3Storey-MD",
     ownerName: "Ms. Alyssa",
     ownerContact: "+639173056877",
-    agentPhoto: alyssaImg,                // ✅ uses Ms. Alyssa.png
+    agentPhoto: alyssaImg, // ✅ uses Ms. Alyssa.png
   },
   {
     id: "4",
@@ -111,7 +113,7 @@ export const mockProperties: Property[] = [
       "Designer residence in Neopolitan Fairview QC where sophisticated design meets modern luxury",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
-    agentPhoto: joshuaTanatoImg,          // ✅ uses Joshua Tanato.png
+    agentPhoto: joshuaTanatoImg, // ✅ uses Joshua Tanato.png
   },
   {
     id: "5",
@@ -131,7 +133,7 @@ export const mockProperties: Property[] = [
       "Brand New 2 -S torey 4 Bedrooms House and Lot with Swimming Po ol for Sale in Filinvest Heights Quezon City",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
-    agentPhoto: joshuaTanatoImg,          // ✅ same agent photo reused
+    agentPhoto: joshuaTanatoImg, // ✅ same agent photo reused
   },
   {
     id: "6",
@@ -146,11 +148,9 @@ export const mockProperties: Property[] = [
     type: "rent",
     image:
       "https://pix.dotproperty.co.th/eyJidWNrZXQiOiJwcmQtbGlmdWxsY29ubmVjdC1iYWNrZW5kLWIyYi1pbWFnZXMiLCJrZXkiOiJwcm9wZXJ0aWVzLzAxOTdlM2E2LTU4MDItNzQ2OS1hZTMwLWQ0YjhhNDYyMjQ5MS8wMTk3ZTNiOC1kMmEzLTczOTctYTljNy0wOTg4ZmE3OTlhNmYuanBnIiwiYnJhbmQiOiJkb3Rwcm9wZXJ0eSIsImVkaXRzIjp7InJvdGF0ZSI6bnVsbCwicmVzaXplIjp7IndpZHRoIjo0OTAsImhlaWdodCI6MzI1LCJmaXQiOiJjb3ZlciJ9fX0=",
-    description:
-      "FOR RENT:3 BEDROOMHOUSE AND LOT NEAR UP TOWN CENTER",
+    description: "FOR RENT:3 BEDROOMHOUSE AND LOT NEAR UP TOWN CENTER",
     ownerName: "The Potter's Hand Realty & Management Corp.",
     ownerContact: "",
-    // no image for this one yet
   },
   {
     id: "7",
@@ -170,7 +170,7 @@ export const mockProperties: Property[] = [
       "FOR SALE BEAUTIFUL MODERN DESIGN 2 STOREY CORNER HOUSE AND LOT IN GREENWOODS EXECUTIVE VILLAGE",
     ownerName: "Alfie John Lagadia",
     ownerContact: "+639452678532",
-    agentPhoto: alfieJohnLagadiaImg,      // ✅ uses Alfie John Lagadia.jpg
+    agentPhoto: alfieJohnLagadiaImg, // ✅ uses Alfie John Lagadia.jpg
   },
   {
     id: "8",
@@ -189,7 +189,7 @@ export const mockProperties: Property[] = [
     description: "Modern studio unit with amenities",
     ownerName: "ADT REALTY",
     ownerContact: "+639173151528",
-    agentPhoto: adtRealEstateImg,         // ✅ uses ADT Real Estate.png
+    agentPhoto: adtRealEstateImg, // ✅ uses ADT Real Estate.png
   },
   {
     id: "9",
@@ -221,8 +221,7 @@ export const mockProperties: Property[] = [
     type: "rent",
     image:
       "https://images.unsplash.com/photo-1673340826331-384cf4f7b3a5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb3dudG93biUyMGFwYXJ0bWVudCUyMGludGVyaW9yfGVufDF8fHx8MTc2MzgyNDM4OHww&ixlib=rb-4.1.0&q=80&w=1080",
-    description:
-      "Affordable 2-bedroom apartment in city center",
+    description: "Affordable 2-bedroom apartment in city center",
     ownerName: "Ramon Valdez",
     ownerContact: "+63 926 012 3456",
   },
@@ -264,36 +263,70 @@ export const mockProperties: Property[] = [
 ];
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<
-    "home" | "browse" | "rent" | "agent-profile" | "contact-agent"
-  >("home");
+  const [currentView, setCurrentView] = useState<View>("home");
   const [selectedProperty, setSelectedProperty] =
     useState<Property | null>(null);
 
+  // 👇 history of visited views (for proper Back behavior)
+  const [history, setHistory] = useState<View[]>([]);
+
+  // Go to a specific view and push the current view into history
+  const goToView = (view: View) => {
+    setHistory((prev) => [...prev, currentView]);
+    setCurrentView(view);
+  };
+
+  // Go back to the previous view (or home if no history)
+  const goBack = () => {
+    setHistory((prev) => {
+      if (prev.length === 0) {
+        setCurrentView("home");
+        return prev;
+      }
+
+      const newHistory = [...prev];
+      const lastView = newHistory.pop() as View;
+      setCurrentView(lastView);
+      return newHistory;
+    });
+  };
+
+  // 🔁 used when navigating to Agent Profile / Contact Agent
   const handleNavigateToAgent = (
     view: "agent-profile" | "contact-agent",
     property: Property,
   ) => {
     setSelectedProperty(property);
-    setCurrentView(view);
+    goToView(view);
+  };
+
+  // 🔗 Navigation bar handler:
+  // - If "home" is clicked → behave like Back
+  // - Other tabs → normal goToView
+  const handleNavigation = (view: View) => {
+    if (view === "home") {
+      goBack();
+    } else {
+      goToView(view);
+    }
   };
 
   return (
     <div className="min-h-screen bg-white">
       <Navigation
         currentView={currentView}
-        onNavigate={setCurrentView}
+        onNavigate={handleNavigation}
       />
 
       {currentView === "home" && (
-        <Homepage onNavigate={setCurrentView} />
+        <Homepage onNavigate={goToView} />
       )}
 
       {currentView === "browse" && (
         <BrowseProperties
           properties={mockProperties.filter((p) => p.type === "buy")}
           onNavigateToAgent={handleNavigateToAgent}
-          onBack={() => setCurrentView("home")}
+          onBack={goBack}
         />
       )}
 
@@ -301,21 +334,21 @@ export default function App() {
         <RentProperties
           properties={mockProperties.filter((p) => p.type === "rent")}
           onNavigateToAgent={handleNavigateToAgent}
-          onBack={() => setCurrentView("home")}
+          onBack={goBack}
         />
       )}
 
       {currentView === "agent-profile" && selectedProperty && (
         <AgentProfile
           property={selectedProperty}
-          onBack={() => setCurrentView("home")}
+          onBack={goBack}
         />
       )}
 
       {currentView === "contact-agent" && selectedProperty && (
         <ContactAgent
           property={selectedProperty}
-          onBack={() => setCurrentView("home")}
+          onBack={goBack}
         />
       )}
     </div>
