@@ -30,13 +30,12 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
         <h1 className="text-[#222B52] mb-12">Agent Profile</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           {/* LEFT SECTION — AGENT INFO */}
           <div className="bg-[#E8E4DC] p-8 rounded">
 
             {/* AGENT PHOTO */}
             <div className="w-full aspect-square max-w-sm mx-auto border-2 border-[#7F858D] bg-white rounded mb-6 overflow-hidden relative">
-              {/* Inner border effect */}
               <div className="absolute inset-4 border border-[#7F858D] pointer-events-none rounded" />
 
               {property.agentPhoto ? (
@@ -61,7 +60,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
               Real Estate Agent • {property.City || property.Region}
             </p>
 
-            {/* BIO (can later attach custom bios per agent) */}
+            {/* BIO */}
             <p className="text-[#7F858D] text-sm leading-relaxed mb-8 text-center">
               {property.description ||
                 "A trusted property agent specializing in luxury estates, residential homes, and prime investment listings across the city."}
@@ -110,34 +109,44 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
             </button>
           </div>
 
-          {/* RIGHT SECTION — FEATURED IMAGES */}
-          <div className="bg-[#7F858D] p-8 rounded flex flex-col">
-            <h3 className="text-white mb-6">Featured Listings: Property Photos</h3>
+            {/* RIGHT SECTION — FEATURED IMAGES */}
+            <div className="bg-[#7F858D] p-8 rounded w-full h-auto">
+              <h3 className="text-white mb-6">Featured Listings: Property Photos</h3>
 
-            <div className="flex-1 flex flex-col gap-4">
-              {/* Two small previews */}
-              <div className="grid grid-cols-2 gap-4">
-                {featuredImages.slice(0, 2).map((img, i) => (
-                  <div key={i} className="aspect-video bg-white border-2 border-white rounded overflow-hidden relative">
-                    <div className="absolute inset-3 border border-[#7F858D] overflow-hidden">
-                      <ImageWithFallback src={img} alt="" className="w-full h-full object-cover" />
+              <div className="flex flex-col gap-6">
+
+                {/* Two small previews */}
+                <div className="grid grid-cols-2 gap-4 w-full">
+                  {featuredImages.slice(0, 2).map((img, i) => (
+                    <div
+                      key={i}
+                      className="bg-white border border-white rounded overflow-hidden"
+                    >
+                      <div className="border border-[#6D727A] rounded">
+                        <ImageWithFallback
+                          src={img}
+                          alt=""
+                          className="w-full h-auto object-cover"
+                        />
+                      </div>
                     </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Main large photo */}
-              <div className="flex-1 bg-white border-2 border-white rounded overflow-hidden relative min-h-[300px]">
-                <div className="absolute inset-4 border border-[#7F858D] overflow-hidden">
-                  <ImageWithFallback src={featuredImages[0]} alt="" className="w-full h-full object-cover" />
+                  ))}
                 </div>
+
+                {/* Main large photo - auto resizes */}
+                <div className="bg-white border border-white rounded overflow-hidden">
+                  <div className="border border-[#6D727A] rounded">
+                    <ImageWithFallback
+                      src={featuredImages[0]}
+                      alt=""
+                      className="w-full h-auto object-contain"
+                    />
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            <div className="mt-6 space-y-2 text-white text-sm">
-          
-            </div>
-          </div>
         </div>
       </main>
     </div>
