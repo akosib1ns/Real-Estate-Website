@@ -51,11 +51,10 @@ export function Navigation({
           {/* Right Side */}
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 text-white hover:opacity-80 transition-opacity">
-              <HelpCircle className="size-4" />
-              <span>Get Help</span>
+            
             </button>
             <button className="p-2 rounded-full hover:bg-white/10 transition-colors">
-              <User className="size-5 text-white" />
+            
             </button>
           </div>
         </div>

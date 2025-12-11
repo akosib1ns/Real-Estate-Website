@@ -9,7 +9,7 @@ import { ContactAgent } from "./components/ContactAgent";
 const image_46e41bc5770eaf655c675849b85c172372b8f29c =
   "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsaXZpbmclMjByb29tfGVufDB8fHx8fDE3MzI4OTI4MDB8MA&ixlib=rb-4.1.0&q=80&w=1080";
 
-/// ✅ LOCAL AGENT IMAGES  (exact names from your screenshot)
+
 import ennahMoralesImg from "./assets/agents/Ennah Morales.jpg";
 import alfieJohnLagadiaImg from "./assets/agents/Alfie John Lagadia.jpg";
 import alyssaImg from "./assets/agents/Ms. Alyssa.png";
@@ -34,11 +34,11 @@ export interface Property {
   description: string;
   ownerName: string;
   ownerContact: string;
-  // ✅ photo used in AgentProfile
+  
   agentPhoto?: string;
 }
 
-// 👇 define a View type so history & currentView stay in sync
+
 type View = "home" | "browse" | "rent" | "agent-profile" | "contact-agent";
 
 export const mockProperties: Property[] = [
@@ -57,7 +57,7 @@ export const mockProperties: Property[] = [
     description: "Spacious and Affordable Urban Living",
     ownerName: "Ennah Morales",
     ownerContact: "",
-    agentPhoto: ennahMoralesImg, // ✅ uses Ennah Morales.jpg
+    agentPhoto: ennahMoralesImg, 
   },
   {
     id: "2",
@@ -76,7 +76,7 @@ export const mockProperties: Property[] = [
       "3BR Semi-furnished Townhouse for Sale at San Juan City Near. Xavier School",
     ownerName: "Jackson Lim",
     ownerContact: "+639173007178",
-    agentPhoto: jacksonLimImg, // ✅ uses Jackson Lim Jr.png
+    agentPhoto: jacksonLimImg, 
   },
   {
     id: "3",
@@ -94,7 +94,7 @@ export const mockProperties: Property[] = [
     description: "Four Bedrooms Townhouse for Sale in Mandaluyong 3Storey-MD",
     ownerName: "Ms. Alyssa",
     ownerContact: "+639173056877",
-    agentPhoto: alyssaImg, // ✅ uses Ms. Alyssa.png
+    agentPhoto: alyssaImg, 
   },
   {
     id: "4",
@@ -113,7 +113,7 @@ export const mockProperties: Property[] = [
       "Designer residence in Neopolitan Fairview QC where sophisticated design meets modern luxury",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
-    agentPhoto: joshuaTanatoImg, // ✅ uses Joshua Tanato.png
+    agentPhoto: joshuaTanatoImg, 
   },
   {
     id: "5",
@@ -133,7 +133,7 @@ export const mockProperties: Property[] = [
       "Brand New 2 -S torey 4 Bedrooms House and Lot with Swimming Po ol for Sale in Filinvest Heights Quezon City",
     ownerName: "Joshua Tanato",
     ownerContact: "+639052710847",
-    agentPhoto: joshuaTanatoImg, // ✅ same agent photo reused
+    agentPhoto: joshuaTanatoImg, 
   },
   {
     id: "6",
@@ -170,7 +170,7 @@ export const mockProperties: Property[] = [
       "FOR SALE BEAUTIFUL MODERN DESIGN 2 STOREY CORNER HOUSE AND LOT IN GREENWOODS EXECUTIVE VILLAGE",
     ownerName: "Alfie John Lagadia",
     ownerContact: "+639452678532",
-    agentPhoto: alfieJohnLagadiaImg, // ✅ uses Alfie John Lagadia.jpg
+    agentPhoto: alfieJohnLagadiaImg, 
   },
   {
     id: "8",
@@ -189,7 +189,7 @@ export const mockProperties: Property[] = [
     description: "Modern studio unit with amenities",
     ownerName: "ADT REALTY",
     ownerContact: "+639173151528",
-    agentPhoto: adtRealEstateImg, // ✅ uses ADT Real Estate.png
+    agentPhoto: adtRealEstateImg, 
   },
   {
     id: "9",
@@ -267,16 +267,16 @@ export default function App() {
   const [selectedProperty, setSelectedProperty] =
     useState<Property | null>(null);
 
-  // 👇 history of visited views (for proper Back behavior)
+
   const [history, setHistory] = useState<View[]>([]);
 
-  // Go to a specific view and push the current view into history
+
   const goToView = (view: View) => {
     setHistory((prev) => [...prev, currentView]);
     setCurrentView(view);
   };
 
-  // Go back to the previous view (or home if no history)
+  
   const goBack = () => {
     setHistory((prev) => {
       if (prev.length === 0) {
@@ -291,7 +291,7 @@ export default function App() {
     });
   };
 
-  // 🔁 used when navigating to Agent Profile / Contact Agent
+
   const handleNavigateToAgent = (
     view: "agent-profile" | "contact-agent",
     property: Property,
@@ -300,9 +300,7 @@ export default function App() {
     goToView(view);
   };
 
-  // 🔗 Navigation bar handler:
-  // - If "home" is clicked → behave like Back
-  // - Other tabs → normal goToView
+
   const handleNavigation = (view: View) => {
     if (view === "home") {
       goBack();

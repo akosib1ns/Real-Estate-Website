@@ -36,7 +36,6 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
 
             {/* AGENT PHOTO */}
             <div className="w-full aspect-square max-w-sm mx-auto border-2 border-[#7F858D] bg-white rounded mb-6 overflow-hidden relative">
-              {/* Inner border effect */}
               <div className="absolute inset-4 border border-[#7F858D] pointer-events-none rounded" />
 
               {property.agentPhoto ? (
@@ -61,7 +60,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
               Real Estate Agent • {property.City || property.Region}
             </p>
 
-            {/* BIO (can later attach custom bios per agent) */}
+            {/* BIO */}
             <p className="text-[#7F858D] text-sm leading-relaxed mb-8 text-center">
               {property.description ||
                 "A trusted property agent specializing in luxury estates, residential homes, and prime investment listings across the city."}
@@ -70,7 +69,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
             {/* CONTACT DETAILS */}
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 mb-8">
               <div className="flex items-start gap-2 text-[#7F858D]">
-                <Mail className="size-4 mt-0.5 flex-shrink-0" />
+                <Mail className="size-4 mt-0.5" />
                 <div className="text-sm">
                   <p>Email</p>
                   <p className="text-xs break-words">not-provided@example.com</p>
@@ -78,7 +77,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
               </div>
 
               <div className="flex items-start gap-2 text-[#7F858D]">
-                <Phone className="size-4 mt-0.5 flex-shrink-0" />
+                <Phone className="size-4 mt-0.5" />
                 <div className="text-sm">
                   <p>Contact</p>
                   <p className="text-xs">
@@ -88,7 +87,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
               </div>
 
               <div className="flex items-start gap-2 text-[#7F858D]">
-                <Globe className="size-4 mt-0.5 flex-shrink-0" />
+                <Globe className="size-4 mt-0.5" />
                 <div className="text-sm">
                   <p>Website</p>
                   <p className="text-xs">www.example-realestate.com</p>
@@ -96,7 +95,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
               </div>
 
               <div className="flex items-start gap-2 text-[#7F858D]">
-                <MapPin className="size-4 mt-0.5 flex-shrink-0" />
+                <MapPin className="size-4 mt-0.5" />
                 <div className="text-sm">
                   <p>Location</p>
                   <p className="text-xs">{property.location}</p>
@@ -114,8 +113,9 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
           <div className="bg-[#7F858D] p-8 rounded flex flex-col">
             <h3 className="text-white mb-6">Featured Listings: Property Photos</h3>
 
-            <div className="flex-1 flex flex-col gap-4">
-              {/* Two small previews */}
+            <div className="flex flex-col gap-4">
+              
+              {/* Two small previews (unchanged) */}
               <div className="grid grid-cols-2 gap-4">
                 {featuredImages.slice(0, 2).map((img, i) => (
                   <div key={i} className="aspect-video bg-white border-2 border-white rounded overflow-hidden relative">
@@ -126,17 +126,17 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
                 ))}
               </div>
 
-              {/* Main large photo */}
-              <div className="flex-1 bg-white border-2 border-white rounded overflow-hidden relative min-h-[300px]">
-                <div className="absolute inset-4 border border-[#7F858D] overflow-hidden">
-                  <ImageWithFallback src={featuredImages[0]} alt="" className="w-full h-full object-cover" />
-                </div>
+              {/* Main large photo — MATCH thumbnails: remove inner inset, use direct aspect box */}
+              <div className="aspect-[4/3] bg-white border-2 border-white rounded overflow-hidden">
+                {/* image sits directly, no inner absolute wrapper */}
+                <ImageWithFallback
+                  src={featuredImages[0]}
+                  alt=""
+                  className="w-full h-full object-cover block"
+                />
               </div>
             </div>
 
-            <div className="mt-6 space-y-2 text-white text-sm">
-          
-            </div>
           </div>
         </div>
       </main>
