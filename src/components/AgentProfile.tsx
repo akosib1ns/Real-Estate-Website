@@ -30,7 +30,7 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
         <h1 className="text-[#222B52] mb-12">Agent Profile</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          
+
           {/* LEFT SECTION — AGENT INFO */}
           <div className="bg-[#E8E4DC] p-8 rounded">
 
@@ -109,13 +109,12 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
             </button>
           </div>
 
-          {/* RIGHT SECTION — FEATURED IMAGES */}
-          <div className="bg-[#7F858D] p-8 rounded flex flex-col">
-            <h3 className="text-white mb-6">Featured Listings: Property Photos</h3>
+            {/* RIGHT SECTION — FEATURED IMAGES */}
+            <div className="bg-[#7F858D] p-8 rounded w-full h-auto">
+              <h3 className="text-white mb-6">Featured Listings: Property Photos</h3>
 
-            <div className="flex flex-col gap-4">
-              
-              {/* Two small previews (unchanged) */}
+            <div className="flex-1 flex flex-col gap-4">
+              {/* Two small previews */}
               <div className="grid grid-cols-2 gap-4">
                 {featuredImages.slice(0, 2).map((img, i) => (
                   <div key={i} className="aspect-video bg-white border-2 border-white rounded overflow-hidden relative">
@@ -126,17 +125,17 @@ export function AgentProfile({ property, onBack }: AgentProfileProps) {
                 ))}
               </div>
 
-              {/* Main large photo — MATCH thumbnails: remove inner inset, use direct aspect box */}
-              <div className="aspect-[4/3] bg-white border-2 border-white rounded overflow-hidden">
-                {/* image sits directly, no inner absolute wrapper */}
-                <ImageWithFallback
-                  src={featuredImages[0]}
-                  alt=""
-                  className="w-full h-full object-cover block"
-                />
+              {/* Main large photo */}
+              <div className="flex-1 bg-white border-2 border-white rounded overflow-hidden relative min-h-[300px]">
+                <div className="absolute inset-4 border border-[#7F858D] overflow-hidden">
+                  <ImageWithFallback src={featuredImages[0]} alt="" className="w-full h-full object-cover" />
+                </div>
               </div>
             </div>
 
+            <div className="mt-6 space-y-2 text-white text-sm">
+          
+            </div>
           </div>
         </div>
       </main>

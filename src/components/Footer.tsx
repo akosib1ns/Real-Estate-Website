@@ -24,25 +24,25 @@ export function Footer() {
               href="#"
               className="text-white hover:opacity-80 transition-opacity"
             >
-            
+              Link one
             </a>
             <a
               href="#"
               className="text-white hover:opacity-80 transition-opacity"
             >
-             
+              Link two
             </a>
             <a
               href="#"
               className="text-white hover:opacity-80 transition-opacity"
             >
-             
+              Link three
             </a>
             <a
               href="#"
               className="text-white hover:opacity-80 transition-opacity"
             >
-           
+              Link four
             </a>
           </div>
         </div>
@@ -65,7 +65,7 @@ export function Footer() {
           </div>
 
           <p className="text-white/80 text-sm">
-            © 2024 Your Website. All rights reserved.
+            © 2025 Your Website. All rights reserved.
           </p>
 
           {/* Social Icons */}
